@@ -4,7 +4,7 @@ import java.util.TreeMap;
 
 import it.ariadne.bookingresources.Car;
 
-public class DaoCar implements DaoResourceInt<Car> {
+public class DaoCar implements DaoIF<Car> {
 
 	private TreeMap<String, Car> carMap;
 
@@ -41,9 +41,20 @@ public class DaoCar implements DaoResourceInt<Car> {
 
 		if (!carMap.containsKey(t.getId())) {
 			carMap.put(t.getId(), t);
+			
 			return true;
 		}
 		return false;
+	}
+
+	public Car getById(String id) {
+		
+		if(carMap.containsKey(id)){
+			//System.out.println("è presente l'id!!");
+			return carMap.get(id);
+		}
+		
+		return null;
 	}
 
 }

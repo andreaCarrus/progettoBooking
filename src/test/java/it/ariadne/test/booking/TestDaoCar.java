@@ -10,14 +10,14 @@ import org.junit.Test;
 
 import it.ariadne.bookingresources.Car;
 import it.ariadne.dao.DaoCar;
-import it.ariadne.dao.DaoResourceInt;
+import it.ariadne.dao.DaoIF;
 
 public class TestDaoCar {
 
 	Car auto;
 	Car auto1;
 	Car auto2;
-	DaoResourceInt dri;
+	DaoIF<Car> dri;
 	Map<String, Car> mappaAuto;
 
 	@Before
@@ -47,20 +47,21 @@ public class TestDaoCar {
 
 		Assert.assertTrue("Dimensione della mappa corretta", 2 == mappaAuto.size());
 
-		for (Map.Entry<String, Car> entry : mappaAuto.entrySet()) {
-
-			System.out.println(entry.getValue().getId() + "\t" + entry.getValue().getDescription() + "\t"
-					+ entry.getValue().getNumberOfSpace() + "\t" + entry.getValue().getType());
-
-		}
+		// for (Map.Entry<String, Car> entry : mappaAuto.entrySet()) {
+		//
+		// System.out.println(entry.getValue().getId() + "\t" +
+		// entry.getValue().getDescription() + "\t"
+		// + entry.getValue().getNumberOfSpace() + "\t" +
+		// entry.getValue().getType());
+		//
+		// }
 
 	}
 
 	@Test
 	public void testInserimento() {
-		
+
 		Assert.assertTrue("La prima auto viene caricata", dri.add(auto));
-		;
 		Assert.assertFalse("La seconda auto non viene caricata", dri.add(auto));
 
 	}
@@ -87,8 +88,29 @@ public class TestDaoCar {
 		Car autoSave = (Car) dri.listAll().get(auto.getId());
 		Car autoUpdate = new Car(autoSave.getId(), "Auto numero 4", 6, "DIESEL");
 
-		Assert.assertTrue("Aggiornamento riuscito",dri.update(autoUpdate));
+		Assert.assertTrue("Aggiornamento riuscito", dri.update(autoUpdate));
 		Assert.assertFalse("Aggiornamento di una Car che non esiste", dri.update(new Car("xxxx", null, 0, null)));
+
+	}
+
+	@Test
+	public void testGetById() {
+
+		dri.add(auto);
+		mappaAuto = dri.listAll();
+
+//		for (Map.Entry<String, Car> entry : mappaAuto.entrySet()) {
+//
+//			System.out.println(entry.getValue().getId() + "\t" + entry.getValue().getDescription() + "\t"
+//					+ entry.getValue().getNumberOfSpace() + "\t" + entry.getValue().getType());
+//
+//		}
+		// System.out.println(dri.getById(auto.getId())+"\t: "+auto.getId());
+		Car c =  dri.getById(auto.getId());
+		Assert.assertTrue("Ricerca dell'elemento corretto", c.getId().equals(auto.getId()));
+		
+		c =  dri.getById("errore");
+		Assert.assertFalse("Non deve essere presente il veicolo",c !=null);
 
 	}
 
