@@ -44,8 +44,7 @@ public class TestDaoCar {
 		// dri.add(auto2);
 
 		mappaAuto = dri.listAll();
-
-		Assert.assertTrue("Dimensione della mappa corretta", 2 == mappaAuto.size());
+		Assert.assertEquals("Dimensione della mappa corretta", 2, mappaAuto.size());
 
 		// for (Map.Entry<String, Car> entry : mappaAuto.entrySet()) {
 		//
@@ -110,7 +109,8 @@ public class TestDaoCar {
 		Assert.assertTrue("Ricerca dell'elemento corretto", c.getId().equals(auto.getId()));
 		
 		c =  dri.getById("errore");
-		Assert.assertFalse("Non deve essere presente il veicolo",c !=null);
+//		Assert.assertFalse("Non deve essere presente il veicolo",c !=null);
+		Assert.assertEquals("Non deve essere presente il veicolo",c, null);
 
 	}
 

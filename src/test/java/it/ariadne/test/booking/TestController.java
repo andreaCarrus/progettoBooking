@@ -1,14 +1,10 @@
 package it.ariadne.test.booking;
 
-import java.util.Map;
-import java.util.TreeMap;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import it.ariadne.bookingresources.Car;
-import it.ariadne.bookingresources.Resource;
 import it.ariadne.controller.Controller;
 import it.ariadne.dao.DaoCar;
 
@@ -52,11 +48,14 @@ public class TestController {
 		contCar.add(auto2);
 		i++;
 
-		Assert.assertTrue("Il numero di elementi e pari a ", i == contCar.listAll().size());
+//		Assert.assertTrue("Il numero di elementi e pari a ", i == contCar.listAll().size());
+		Assert.assertEquals("Il numero di elementi e pari a ", i, contCar.listAll().size());
 
 		contCar.add(auto2);
 		i++;
-		Assert.assertFalse("Il numero di elementi e pari a ", i <= contCar.listAll().size());
+//		Assert.assertFalse("Il numero di elementi e pari a ", i <= contCar.listAll().size());
+		Assert.assertNotEquals("Il numero di elementi e pari a ", i, contCar.listAll().size());
+
 
 		// TreeMap<String, Car> po = contCar.listAll();
 		// for (Map.Entry<String, Car> entry : po.entrySet()) {
@@ -119,7 +118,8 @@ public class TestController {
 		Assert.assertTrue("La modifica viene fatta con successo", contCar.update(autoModificata));
 
 		Assert.assertFalse("I campi sono diversi", (contCar.getById(auto1.getId()).getType().equals("Mercedes")));
-		Assert.assertFalse("Non viene fatto l'update su un oggetto non presente", contCar.getById("falso") != null);
+		Assert.assertEquals("Non viene fatto l'update su un oggetto non presente",contCar.getById("falso") ,null);
+//		Assert.assertFalse("Non viene fatto l'update su un oggetto non presente", contCar.getById("falso") != null);
 
 	}
 
