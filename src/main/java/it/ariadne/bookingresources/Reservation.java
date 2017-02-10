@@ -6,6 +6,12 @@ import org.joda.time.Period;
 
 public class Reservation {
 	
+	@Override
+	public String toString() {
+		return "Reservation [idUser=" + idUser + ", idResource=" + idResource + ", idReservation=" + idReservation
+				+ ", dataReservation=" + dataReservation + ", dataStart=" + dataStart + ", dataStop=" + dataStop + "]";
+	}
+
 	private String idUser;
 	private String idResource;
 	private String idReservation;

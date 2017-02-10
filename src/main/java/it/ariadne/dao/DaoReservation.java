@@ -32,7 +32,7 @@ public class DaoReservation implements DaoIF<Reservation> {
 	}
 
 	public boolean delete(Reservation t) {
-		if(reservationMap.containsKey(t.getIdReservation())){
+		if (t != null && reservationMap.containsKey(t.getIdReservation())) {
 			reservationMap.remove(t.getIdReservation());
 			return true;
 		}
@@ -40,8 +40,10 @@ public class DaoReservation implements DaoIF<Reservation> {
 	}
 
 	public boolean add(Reservation t) {
-		
-		if(!reservationMap.containsKey(t.getIdReservation())){
+
+		// System.out.println("Sto aggiungendo!");
+
+		if (!reservationMap.containsKey(t.getIdReservation())) {
 			reservationMap.put(t.getIdReservation(), t);
 			return true;
 		}
