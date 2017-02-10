@@ -8,17 +8,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import it.ariadne.bookingresources.Car;
-import it.ariadne.businessogic.ResManager;
+import it.ariadne.businessogic.ResourceMngmt;
 
 public class TestResourceManager {
 
-	ResManager rm;
+	ResourceMngmt rm;
 	Map<String, Car> mappaAuto = null;
 
 	@Before
 	public void setup() {
 
-		rm = new ResManager("Manager delle risorse");// deve prendere in
+		rm = new ResourceMngmt("Manager delle risorse");// deve prendere in
 														// ingresso qualche
 														// altro parametro??
 

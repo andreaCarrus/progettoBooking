@@ -9,12 +9,12 @@ import it.ariadne.businessogic.interfacce.CarManagementIF;
 import it.ariadne.controller.Controller;
 import it.ariadne.dao.DaoCar;
 
-public class ResManager implements CarManagementIF {
+public class ResourceMngmt implements CarManagementIF {
 
 	private String nomeManager;
 	private Controller<Car> controllerCar;
 
-	public ResManager(String nomeManager) {
+	public ResourceMngmt(String nomeManager) {
 		this.nomeManager = nomeManager;
 		controllerCar = new Controller<Car>(new DaoCar());
 	}
